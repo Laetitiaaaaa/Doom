@@ -6,15 +6,43 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/06 10:49:10 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/07 18:01:48 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= wolf3d
+NAME			= doom
 
-SRC_PATH		= ./srcs/
+BASE_SRC		= main.c
 
-SRCS			= $(shell ls $(SRC_PATH) | grep -E ".+\.c")
+INIT_SRC		= init.c										\
+				  parse.c										\
+				  initwn.c
+
+GAME_SRC		= turn.c
+
+MENU_SRC		=
+
+EDITOR_SRC		= mainedit.c
+
+BASE_PATH		= ./src/
+
+GAME_PATH		= ./src/game/
+
+EDITOR_PATH		= ./src/editor/
+
+INIT_PATH		= ./src/init/
+
+MENU_PATH		= ./src/menu/
+
+BASE_PATH		= ./src/
+
+OBJ_PATH		= ./OBJ
+
+SRCS			=	$(addprefix $(BASE_PATH), $(BASE_SRC))			\
+					$(addprefix $(GAME_PATH), $(GAME_SRC))			\
+					$(addprefix $(INIT_PATH), $(INIT_SRC))			\
+					$(addprefix $(MENU_PATH), $(MENU_SRC))			\
+					$(addprefix $(EDITOR_PATH), $(EDITOR_SRC))		\
 
 INC				= -I ./includes
 
@@ -24,7 +52,7 @@ GCC				= gcc
 
 FLAGS			= -Wall -Wextra -Werror
 
-OBJS			= $(addprefix $(SRC_PATH), $(SRCS:.c=.o))
+OBJS			= $(addprefix $(OBJ), $(SRCS:.c=.o))
 
 MAKELIB			= make re -C libft/
 
@@ -36,7 +64,7 @@ FRAME			= -framework OpenGL -framework AppKit
 
 RANDOM			= $$
 
-%.o: %.c ./includes/wolf3d.h
+%.o: %.c ./includes/doom.h
 	@$(GCC) $(INC) -o $@ -c $< $(FLAGS)
 
 $(NAME): $(OBJS)
