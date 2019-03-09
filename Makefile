@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/07 18:01:48 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/09 14:32:55 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,20 @@ BASE_SRC		= main.c
 
 INIT_SRC		= init.c										\
 				  parse.c										\
-				  initwn.c
+				  initwn.c										\
+				  sdl.c
 
-GAME_SRC		= turn.c
+GAME_SRC		= turn.c										\
+				  maingame.c
 
-MENU_SRC		=
+MENU_SRC		= mainmenu.c
 
-EDITOR_SRC		= mainedit.c
+EDITOR_SRC		= mainedit.c									\
+				  printscreen.c 								\
+				  pngreader.c									\
+				  input.c
+
+OPTION_SRC		= mainoption.c									\
 
 BASE_PATH		= ./src/
 
@@ -34,6 +41,8 @@ INIT_PATH		= ./src/init/
 
 MENU_PATH		= ./src/menu/
 
+OPTION_PATH		= ./src/option/
+
 BASE_PATH		= ./src/
 
 OBJ_PATH		= ./OBJ
@@ -42,6 +51,7 @@ SRCS			=	$(addprefix $(BASE_PATH), $(BASE_SRC))			\
 					$(addprefix $(GAME_PATH), $(GAME_SRC))			\
 					$(addprefix $(INIT_PATH), $(INIT_SRC))			\
 					$(addprefix $(MENU_PATH), $(MENU_SRC))			\
+					$(addprefix $(OPTION_PATH), $(OPTION_SRC))		\
 					$(addprefix $(EDITOR_PATH), $(EDITOR_SRC))		\
 
 INC				= -I ./includes
