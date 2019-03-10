@@ -12,6 +12,7 @@
 
 #include "../includes/doom.h"
 
+/*
 int			ft_abs(int	value)
 {
 	value = value < 0 ? -value : value;
@@ -46,6 +47,26 @@ int			hextoint(unsigned char *str, int len)
 		index++;
 	}
 	return (i);
+}
+*/
+
+int		strtoint(unsigned char *str, int len)
+{
+	int	value;
+	int	i;
+	int	conv;
+	
+	value = 0;
+	i = 0;
+	conv = 1;
+	while (i < len)
+	{
+		
+		value += str[len - i] * conv;
+		conv *= 16;
+		i++;
+	}
+	return (value);
 }
 
 void		stopload(t_png *file)
