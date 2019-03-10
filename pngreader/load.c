@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 17:52:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 20:33:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/10 20:42:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void		loadchunk(t_png *file)
 		read(file->fd, chunk, 8) != 8 ? stopload(file) : 0;
 		chunk[8] = 0;
 		(len = hextoint(&chunk[0], 4)) > 8192 ? stopload(file) : 0;
+		printf("NAME = %s\n", file->name);
 		printf("Len = %d\n", len);
+		printf("len value = |%d|%d|%d|%d|\n", (int)chunk[0], (int)chunk[1], (int)chunk[2], (int)chunk[3]);
 		printf("str = |%c|%c|%c|%c|\n", chunk[4], chunk[5], chunk[6], chunk[7]);
 		if (ft_strcmp((const char*)(&chunk[4]), "PLTE") == 0)
 			makechunk(file, len, "PLTE");

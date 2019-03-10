@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 17:36:24 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 20:31:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/10 20:39:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		stopload(t_png *file)
 		file->name != NULL ? free (file->name) : 0;
 		free(file);
 	}
+	exit(0);
 }
 
 void		loadpng(char *path)
@@ -63,20 +64,20 @@ void		loadpng(char *path)
 
 	printf("Yo\n");
 	file = ft_memalloc(sizeof(t_png));
+	file->chunk = NULL;
 	printf("Yo\n");
 	file->name = ft_strdup(path);
-	printf("Yo\n");
+	printf("name = %s\n", file->name);
 	file->name == NULL ? stopload(file) : 0;
-	printf("Yo\n");
-	file->chunk = NULL;
 	printf("Yo\n");
 	checkpath(file);
 	printf("PATH\n");
 	checksignature(file);
+	printf("name = %s\n", file->name);
 	printf("SIGNATURE\n");
 	loadIHDR(file);
 	printf("IHDR\n");
-	
+	printf("Name = %s\n", file->name);
 	loadchunk(file);
 	printf("CHUNK\n");
 	checkprint(file);

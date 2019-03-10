@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 17:38:37 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 19:23:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/10 20:40:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		checksignature(t_png *file)
 	
 	read(file->fd, &check, 8) != 8 ? stopload(file) : 0;
 	(check[0] != 137 || check[1] != 80 || check[2] != 78
-	 || check[3] != 71 || check[4] != 13 || check[5] != 0
+	 || check[3] != 71 || check[4] != 13 || check[5] != 10
 	 || check[6] != 26 || check[7] != 10) ? stopload(file) : 0;
 }
 
