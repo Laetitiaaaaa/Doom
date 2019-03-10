@@ -21,7 +21,7 @@ void		loadchunk(t_png *file)
 	{
 		read(file->fd, chunk, 8) != 8 ? stopload(file) : 0;
 		chunk[8] = 0;
-		(len = hextoint(&chunk[0], 4)) > 8192 ? stopload(file) : 0;
+		(len = strtoint(&chunk[0], 4)) > 8192 ? stopload(file) : 0;
 		printf("NAME = %s\n", file->name);
 		printf("Len = %d\n", len);
 		printf("len value = |%d|%d|%d|%d|\n", (int)chunk[0], (int)chunk[1], (int)chunk[2], (int)chunk[3]);
@@ -50,8 +50,8 @@ void		loadIHDR(t_png *file)
 	ptr = &(check[0]);
 	ptr += 4;
 	checkihdr(ptr, file);
-	file->sizex = hextoint(ptr + 4, 4);
-	file->sizey = hextoint(ptr + 4, 4);
+	file->sizex = strtoint(ptr + 4, 4);
+	file->sizey = strtoint(ptr + 4, 4);
 	file->bpp = *(ptr + 1);
 	file->typecolor = *(ptr + 1);
 	file->compress = *(ptr + 1);
