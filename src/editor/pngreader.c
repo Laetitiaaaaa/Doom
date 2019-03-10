@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 12:35:09 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/09 19:55:23 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/10 15:48:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,7 @@ void		fillfile(t_win *wn, t_png *file)
 	file->compression = (int)sign[10];
 	file->filtrage = (int)sign[11];
 	file->entrelacement= (int)sign[12]; // 13 => 17 CRC
-/*	printf("Sizex = %d\n", file->sizex);
-	printf("Sizey = %d\n", file->sizey);
-	printf("BPP = %d\n", file->bpp);
-	printf("Tcolor = %d\n", file->typecolor);
-	printf("compression = %d\n", file->compression);
-*/
+//	checkcrc(file, &sign[13]);
 }
 
 void		checksignatur(t_win *wn, t_png file)

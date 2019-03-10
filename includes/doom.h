@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/09 19:08:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/10 19:47:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,26 @@ typedef enum		e_interface
 	PAUSE,
 }					t_interface;
 
+typedef struct		s_chunk
+{
+	int				len;
+	char			*name;
+	unsigned char	*data;
+	struct s_chunk	*next;
+}					t_chunk;
+
 typedef struct		s_png
 {
 	int				sizex;
 	int				sizey;
 	int				bpp;
 	int				typecolor;
-	int				compression;
-	int				filtrage;
-	int				entrelacement;
-	int				len;
+	int				compress;
+	int				filt;
+	int				lacement;
 	int				fd;
-	char			*path;
-	char			*data;
+	char			*name;
+	t_chunk			*chunk;
 }					t_png;
 
 typedef struct		s_win
@@ -73,8 +80,20 @@ typedef struct		s_win
 void				edit(t_win *wn);
 void				inputeditor(t_win *wn);
 void				printeditor(t_win *wn);
-void				getpng(t_win *wn, char *path);
-void				checksignatur(t_win *wn, t_png file);
+
+void				checkpath(t_png *file);
+void				loadIHDR(t_png *file);
+void				checkihdr(unsigned char *head, t_png *file);
+void				checksignature(t_png *file);
+void				checkprint(t_png *file);
+void				makechunk(t_png *file, int len, char *chunk);
+t_chunk				newchunk(t_png *file);
+void				loadpng(char *path);
+void				loadchunk(t_png *file);
+void				stopload(t_png *file);
+int					hextoint(unsigned char *str, int len);
+//void				getpng(t_win *wn, char *path);
+//void				checksignatur(t_win *wn, t_png file);
 
 int					parsearg(int argc, char **argv, t_win **wn);
 int					init(t_win **wn);
