@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 19:47:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/11 13:43:20 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,12 @@ void				checkihdr(unsigned char *head, t_png *file);
 void				checksignature(t_png *file);
 void				checkprint(t_png *file);
 void				makechunk(t_png *file, int len, char *chunk);
-t_chunk				newchunk(t_png *file);
+t_chunk				*newchunk(t_png *file);
 void				loadpng(char *path);
 void				loadchunk(t_png *file);
 void				stopload(t_png *file);
-int					hextoint(unsigned char *str, int len);
+void				convertdata(t_png *file);
+int					strtoint(unsigned char *str, int len);
 //void				getpng(t_win *wn, char *path);
 //void				checksignatur(t_win *wn, t_png file);
 

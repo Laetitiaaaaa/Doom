@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:20:52 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 19:10:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/11 13:46:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		edit(t_win *wn)
 	getpng(wn, "./texture/2x2.png");
 	getpng(wn, "./texture/2x2b.png");
 */
-	loadpng("./texture/2x2.png");
-	stop_exec("THE END\n", wn);
+	loadpng("./texture/solow.png");
+	stop_exec("============~===========\n", wn);
 	printeditor(wn);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 17:36:24 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 20:39:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/11 13:42:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ int		strtoint(unsigned char *str, int len)
 	int	value;
 	int	i;
 	int	conv;
+	int	test = 0;
 	
 	value = 0;
-	i = 0;
+	i = 1;
 	conv = 1;
+	while (test++ < len)
+		printf("\n\t\t|%d|", str[test]);
 	while (i < len)
 	{
 		
@@ -83,24 +86,14 @@ void		loadpng(char *path)
 {
 	t_png	*file;
 
-	printf("Yo\n");
 	file = ft_memalloc(sizeof(t_png));
 	file->chunk = NULL;
-	printf("Yo\n");
 	file->name = ft_strdup(path);
-	printf("name = %s\n", file->name);
 	file->name == NULL ? stopload(file) : 0;
-	printf("Yo\n");
 	checkpath(file);
-	printf("PATH\n");
 	checksignature(file);
-	printf("name = %s\n", file->name);
-	printf("SIGNATURE\n");
 	loadIHDR(file);
-	printf("IHDR\n");
-	printf("Name = %s\n", file->name);
 	loadchunk(file);
-	printf("CHUNK\n");
 	checkprint(file);
-	printf("PRINT\n");
+	convertdata(file);
 }

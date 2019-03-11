@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:21:22 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 19:26:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/11 13:41:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	makechunk(t_png *file, int len, char *chunk)
 	unsigned char	check[len + 1];
 
 	plte = NULL;
-	*plte = newchunk(file);
+	file->chunk = newchunk(file);
+	plte = file->chunk;
 	plte->name = ft_strdup(chunk);
 	plte->len = len;
 	if (len != 0)
@@ -29,15 +30,23 @@ void	makechunk(t_png *file, int len, char *chunk)
 	}
 }
 
-t_chunk	newchunk(t_png *file)
+t_chunk	*newchunk(t_png *file)
 {
 	t_chunk *ptr;
 
 	ptr = file->chunk;
-	while (ptr->next != NULL)
+	if (ptr == NULL)
+	{
+		(ptr = malloc(sizeof(t_png))) == NULL ? stopload(file) : 0;
+		ptr->next = NULL;
+	}
+	else
+	{
+		while (ptr->next != NULL)
+			ptr = ptr->next;
+		(ptr->next = ft_memalloc(sizeof(t_png))) == NULL ? stopload(file) : 0;
 		ptr = ptr->next;
-	(ptr->next = ft_memalloc(sizeof(t_png))) == NULL ? stopload(file) : 0;
-	ptr = ptr->next;
-	ptr->next = NULL;
-	return (*ptr);
+		ptr->next = NULL;
+	}
+	return (ptr);
 }

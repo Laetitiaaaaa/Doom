@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 17:38:37 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 20:40:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/11 13:46:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		checkprint(t_png *file)
 	t_chunk	*print;
 
 	print = file->chunk;
+	printf("\n============~==========\n");
 	printf("Path	: %s\n", file->name);
 	printf("Size X	: %d\n", file->sizex);
 	printf("Size Y	: %d\n", file->sizey);

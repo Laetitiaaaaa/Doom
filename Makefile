@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/10 19:12:03 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/11 13:43:47 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ OPTION_SRC		= mainoption.c									\
 PNG_SRC			= load.c										\
 				  checkpng.c									\
 				  newchunk.c									\
+				  convert.c										\
 				  newpngreader.c
 
 PNG_PATH		= ./pngreader/

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 17:52:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/10 20:42:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/11 13:42:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@ void		loadchunk(t_png *file)
 
 	while (TRUE)
 	{
-		read(file->fd, chunk, 8) != 8 ? stopload(file) : 0;
+		read(file->fd, chunk, 8);
 		chunk[8] = 0;
 		(len = strtoint(&chunk[0], 4)) > 8192 ? stopload(file) : 0;
-		printf("NAME = %s\n", file->name);
-		printf("Len = %d\n", len);
-		printf("len value = |%d|%d|%d|%d|\n", (int)chunk[0], (int)chunk[1], (int)chunk[2], (int)chunk[3]);
-		printf("str = |%c|%c|%c|%c|\n", chunk[4], chunk[5], chunk[6], chunk[7]);
+		len += 4;
 		if (ft_strcmp((const char*)(&chunk[4]), "PLTE") == 0)
 			makechunk(file, len, "PLTE");
 		else if (ft_strcmp((const char*)(&chunk[4]), "IDAT") == 0)	
@@ -35,8 +32,7 @@ void		loadchunk(t_png *file)
 		else if (ft_strcmp((const char*)(&chunk[4]), "IEND") == 0)
 			break;
 		else
-			(file->fd = lseek(file->fd, len, SEEK_CUR)) == -1 ?
-				stopload(file) : 0;
+			(file->fd = lseek(file->fd, len, SEEK_CUR)) == -1 ? stopload(file) : 0;
 	}
 }
 
@@ -48,13 +44,20 @@ void		loadIHDR(t_png *file)
 	ptr = NULL;
 	read(file->fd, &check, 25) != 25 ? stopload(file) : 0;
 	ptr = &(check[0]);
-	ptr += 4;
+	ptr = &(check[4]);
 	checkihdr(ptr, file);
-	file->sizex = strtoint(ptr + 4, 4);
-	file->sizey = strtoint(ptr + 4, 4);
-	file->bpp = *(ptr + 1);
-	file->typecolor = *(ptr + 1);
-	file->compress = *(ptr + 1);
-	file->filt = *(ptr + 1);
-	file->lacement = *(ptr + 1);
+	ptr = &(check[8]);
+	file->sizex = strtoint(ptr, 4);
+	ptr = &(check[12]);
+	file->sizey = strtoint(ptr, 4);
+	ptr = &(check[16]);
+	file->bpp = *(ptr);
+	ptr = &(check[17]);
+	file->typecolor = *(ptr);
+	ptr = &(check[18]);
+	file->compress = *(ptr);
+	ptr = &(check[19]);
+	file->filt = *(ptr);
+	ptr = &(check[20]);
+	file->lacement = *(ptr);
 }
