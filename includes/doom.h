@@ -6,14 +6,13 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/11 13:43:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/16 21:37:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOM_H
 # define DOOM_H
 
-# include <stdlib.h>
 # include <stdlib.h>
 # include <math.h>
 # include "../libft/libft.h"
@@ -72,7 +71,7 @@ typedef struct		s_win
 	char			debug;
 	char			interface;
 	Uint8			*state;
-	SDL_Event		ev;
+	SDL_Event		*ev;
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
 }					t_win;
@@ -80,21 +79,6 @@ typedef struct		s_win
 void				edit(t_win *wn);
 void				inputeditor(t_win *wn);
 void				printeditor(t_win *wn);
-
-void				checkpath(t_png *file);
-void				loadIHDR(t_png *file);
-void				checkihdr(unsigned char *head, t_png *file);
-void				checksignature(t_png *file);
-void				checkprint(t_png *file);
-void				makechunk(t_png *file, int len, char *chunk);
-t_chunk				*newchunk(t_png *file);
-void				loadpng(char *path);
-void				loadchunk(t_png *file);
-void				stopload(t_png *file);
-void				convertdata(t_png *file);
-int					strtoint(unsigned char *str, int len);
-//void				getpng(t_win *wn, char *path);
-//void				checksignatur(t_win *wn, t_png file);
 
 int					parsearg(int argc, char **argv, t_win **wn);
 int					init(t_win **wn);

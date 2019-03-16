@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/11 13:43:47 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/16 18:08:01 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,6 @@ EDITOR_SRC		= mainedit.c									\
 
 OPTION_SRC		= mainoption.c									\
 
-PNG_SRC			= load.c										\
-				  checkpng.c									\
-				  newchunk.c									\
-				  convert.c										\
-				  newpngreader.c
-
-PNG_PATH		= ./pngreader/
-
 BASE_PATH		= ./src/
 
 GAME_PATH		= ./src/game/
@@ -60,7 +52,6 @@ SRCS			=	$(addprefix $(BASE_PATH), $(BASE_SRC))			\
 					$(addprefix $(MENU_PATH), $(MENU_SRC))			\
 					$(addprefix $(OPTION_PATH), $(OPTION_SRC))		\
 					$(addprefix $(EDITOR_PATH), $(EDITOR_SRC))		\
-					$(addprefix $(PNG_PATH), $(PNG_SRC))			\
 
 INC				= -I ./includes
 
@@ -76,7 +67,7 @@ MAKELIB			= make re -C libft/
 
 LIBFT			= -Llibft/ -lft
 
-LIBMLX			= -L ./libui -lSDL2 -lSDL2_image -lSDL2_mixer
+LIBMLX			= -L ./libui -lSDL2 -lSDL2_mixer
 
 FRAME			= -framework OpenGL -framework AppKit
 

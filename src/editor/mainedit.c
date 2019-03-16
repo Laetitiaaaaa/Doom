@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:20:52 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/11 13:46:02 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/16 19:21:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 
 void		edit(t_win *wn)
 {
+	printf("4.1\n");
 	inputeditor(wn);
-/*	getpng(wn, "./texture/black.png");
-	getpng(wn, "./texture/weird2.png");
-	getpng(wn, "./texture/solob.png");
-	getpng(wn, "./texture/solow.png");
-	getpng(wn, "./texture/split.png");
-	getpng(wn, "./texture/2x2.png");
-	getpng(wn, "./texture/2x2b.png");
-*/
-	loadpng("./texture/solow.png");
-	stop_exec("============~===========\n", wn);
+	printf("4.2\n");
 	printeditor(wn);
+	printf("4.3\n");
 }
