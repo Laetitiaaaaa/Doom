@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 19:02:08 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/17 16:08:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/17 17:19:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	inputeditor(t_win *wn)
 	wn->state[SDL_SCANCODE_RIGHT] ? wn->map->x += (wn->map->size) : 0;
 	wn->state[SDL_SCANCODE_UP] ? wn->map->y -= (wn->map->size) : 0;
 	wn->state[SDL_SCANCODE_DOWN] ? wn->map->y += (wn->map->size) : 0;
-	wn->state[SDL_SCANCODE_KP_PLUS] && wn->map->size < 5 ? wn->map->size *= 1.2 : 0;
+	wn->state[SDL_SCANCODE_KP_PLUS] && wn->map->size < 6 ? wn->map->size *= 1.2 : 0;
+	wn->state[SDL_SCANCODE_KP_PLUS] && wn->map->size >= 6 ? wn->map->size = 6 : 0;
 	wn->state[SDL_SCANCODE_KP_MINUS] && wn->map->size > 0.5 ? wn->map->size *= 0.9 : 0;
+	wn->state[SDL_SCANCODE_KP_MINUS] && wn->map->size <= 0.5 ? wn->map->size = 0.5 : 0;
 	wn->state[SDL_SCANCODE_R] ? resetmap(wn) : 0;
 	wn->map->h = 600 * wn->map->size;
 	wn->map->w = 600 * wn->map->size;

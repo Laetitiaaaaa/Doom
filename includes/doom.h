@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/17 15:20:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/17 17:29:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ typedef enum		e_interface
 typedef struct		s_elem
 {
 	char			*name;
+	int				x1;
+	int				x2;
+	int				y1;
+	int				y2;
 	int				*pos;
 	struct s_elem	*next;
 }					t_elem;
@@ -70,6 +74,7 @@ typedef struct		s_win
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
 	t_map			*map;
+	t_elem			*elem;
 }					t_win;
 
 void				edit(t_win *wn);
