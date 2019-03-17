@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/16 21:37:18 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/17 15:20:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../libui/SDL2/SDL.h"
+
 # define	XSCREEN 800
 # define	YSCREEN 500
 
@@ -43,27 +44,21 @@ typedef enum		e_interface
 	PAUSE,
 }					t_interface;
 
-typedef struct		s_chunk
+typedef struct		s_elem
 {
-	int				len;
 	char			*name;
-	unsigned char	*data;
-	struct s_chunk	*next;
-}					t_chunk;
+	int				*pos;
+	struct s_elem	*next;
+}					t_elem;
 
-typedef struct		s_png
+typedef struct		s_map
 {
-	int				sizex;
-	int				sizey;
-	int				bpp;
-	int				typecolor;
-	int				compress;
-	int				filt;
-	int				lacement;
-	int				fd;
-	char			*name;
-	t_chunk			*chunk;
-}					t_png;
+	float			w;
+	float			h;
+	float			x;
+	float			y;
+	float			size;
+}					t_map;
 
 typedef struct		s_win
 {
@@ -71,9 +66,10 @@ typedef struct		s_win
 	char			debug;
 	char			interface;
 	Uint8			*state;
-	SDL_Event		*ev;
+	SDL_Event		ev;
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
+	t_map			*map;
 }					t_win;
 
 void				edit(t_win *wn);

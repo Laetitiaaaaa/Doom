@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:05:00 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/16 21:21:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/17 14:56:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ void	initsdl(t_win **wn)
 	(*wn)->window == NULL ? stop_exec("Window error\n", *wn): 0;
 	(*wn)->rend = SDL_CreateRenderer((*wn)->window, -1, SDL_RENDERER_ACCELERATED);
 	(*wn)->rend == NULL ? stop_exec("Rend error\n", *wn): 0;
-	printf("Ah !\n");
 	SDL_RenderPresent((*wn)->rend);
 	SDL_UpdateWindowSurface((*wn)->window);
-	SDL_RenderPresent((*wn)->rend);
-	SDL_UpdateWindowSurface((*wn)->window);
-	printf("Oh !\n");
 }

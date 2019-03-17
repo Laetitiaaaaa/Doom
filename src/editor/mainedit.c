@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:20:52 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/16 19:21:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/17 14:58:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void		edit(t_win *wn)
 {
-	printf("4.1\n");
 	inputeditor(wn);
-	printf("4.2\n");
 	printeditor(wn);
-	printf("4.3\n");
 }
