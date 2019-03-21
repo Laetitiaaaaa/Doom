@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:12:44 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/17 14:57:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/21 15:43:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	turn(t_win *wn)
 {
+		initload(&wn);
 	while (TRUE)
 	{
 		SDL_PollEvent(&(wn->ev));

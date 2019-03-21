@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/16 18:08:01 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/21 11:10:08 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ BASE_SRC		= main.c
 INIT_SRC		= init.c										\
 				  parse.c										\
 				  initwn.c										\
-				  sdl.c
+				  sdl.c											\
+				  load.c										\
+				  load2.c
 
 GAME_SRC		= turn.c										\
 				  maingame.c
@@ -29,6 +31,14 @@ EDITOR_SRC		= mainedit.c									\
 				  input.c
 
 OPTION_SRC		= mainoption.c									\
+
+TGA_SRC			= data_color.c									\
+				  read_data.c									\
+				  rle.c											\
+				  rle_color.c									\
+				  set_data_pxl.c								\
+				  set_pxl_color.c								\
+				  tga_main.c
 
 BASE_PATH		= ./src/
 
@@ -42,7 +52,7 @@ MENU_PATH		= ./src/menu/
 
 OPTION_PATH		= ./src/option/
 
-BASE_PATH		= ./src/
+TGA_PATH		= ./src/tga/
 
 OBJ_PATH		= ./OBJ
 
@@ -52,6 +62,7 @@ SRCS			=	$(addprefix $(BASE_PATH), $(BASE_SRC))			\
 					$(addprefix $(MENU_PATH), $(MENU_SRC))			\
 					$(addprefix $(OPTION_PATH), $(OPTION_SRC))		\
 					$(addprefix $(EDITOR_PATH), $(EDITOR_SRC))		\
+					$(addprefix $(TGA_PATH), $(TGA_SRC))			\
 
 INC				= -I ./includes
 
@@ -71,9 +82,8 @@ LIBMLX			= -L ./libui -lSDL2 -lSDL2_mixer
 
 FRAME			= -framework OpenGL -framework AppKit
 
-RANDOM			= $$
 
-%.o: %.c ./includes/doom.h
+%.o: %.c ./includes/doom.h ./includes/tga_reader.h
 	@$(GCC) $(INC) -o $@ -c $< $(FLAGS)
 
 $(NAME): $(OBJS)
