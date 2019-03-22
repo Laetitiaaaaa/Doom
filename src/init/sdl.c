@@ -20,5 +20,4 @@ void	initsdl(t_win **wn)
 	(*wn)->rend = SDL_CreateRenderer((*wn)->window, -1, SDL_RENDERER_ACCELERATED);
 	(*wn)->rend == NULL ? stop_exec("Rend error\n", *wn): 0;
 	SDL_RenderPresent((*wn)->rend);
-	SDL_UpdateWindowSurface((*wn)->window);
 }

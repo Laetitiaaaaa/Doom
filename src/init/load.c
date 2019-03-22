@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/21 17:37:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/22 09:29:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,10 @@
 
 static void	tga2sur(t_tga *tga, SDL_Surface *surface, t_win *wn)
 {
-	SDL_PixelFormat	*fmt;
+	SDL_Texture *txt;
 
-	fmt = malloc(sizeof(fmt));
-	fmt = fill_pxlformat(fmt);
 	SDL_SetRenderDrawColor(wn->rend,0,0,0,0);
 	SDL_RenderClear(wn->rend);
-	SDL_Texture *txt;
 //	surface = set_surface(tga);
 	surface = SDL_CreateRGBSurfaceWithFormatFrom(tga->pxl,tga->w, tga->h, 32, 4 * tga->w, SDL_PIXELFORMAT_ARGB32);
 	txt = SDL_CreateTextureFromSurface(wn->rend, surface);
@@ -45,5 +42,7 @@ void		load_texture(char *path, t_win *wn)
 
 void		initload(t_win **wn)
 {
+	printf("Debut load\n");
 	load_texture("./texture/bg2-2.tga", *wn);
+	printf("Fin load\n");
 }
