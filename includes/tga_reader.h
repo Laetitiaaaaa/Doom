@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 13:54:50 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/21 16:24:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/22 13:11:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 typedef struct		s_pixel
 {
+	unsigned char 	a;
 	unsigned char 	r;
 	unsigned char 	g;
 	unsigned char 	b;
-	unsigned char 	a;
 //	struct s_pixel	*next;
 //	struct s_pixel	*bf;
 }					t_pixel;
@@ -74,6 +74,7 @@ void				create_pxl(t_tga *tga);
 
 //tga_type_read.c
 void				read_color(t_pixel *tab, int bits, unsigned char *file, int pos);
+void				read_color_cm(t_pixel *tab, int bits, unsigned char *file, int pos);
 
 //rle_color.c
 int					loadnew(int bpp, unsigned char *n, unsigned char *file, int mode);

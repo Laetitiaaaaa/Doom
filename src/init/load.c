@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/22 10:49:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/22 16:36:23 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,17 @@ void		load_texture(char *path, t_win *wn)
 
 void		initload(t_win **wn)
 {
+	SDL_PollEvent(&(*wn)->ev);
 	printf("Debut load\n");
-	load_texture("./texture/home.tga", *wn);
+	load_texture("./texture/icon.tga", *wn);
+	SDL_Delay(3000);
+	load_texture("./texture/04.tga", *wn);
+	SDL_Delay(3000);
+	load_texture("./texture/4.tga", *wn);
+	SDL_Delay(3000);
+	load_texture("./texture/pistol.tga", *wn);
+	SDL_Delay(3000);
+	load_texture("./texture/color.tga", *wn);
+	SDL_Delay(3000);
 	printf("Fin load\n");
 }
