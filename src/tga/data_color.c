@@ -6,7 +6,7 @@
 /*   By: jsauron <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 11:33:52 by jsauron           #+#    #+#             */
-/*   Updated: 2019/03/23 11:04:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/23 17:36:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	read_color_cm(t_pixel *pxl, int bits, unsigned char *file, int pos)
 		pxl->r = file[pos];
 		pxl->g = file[pos];
 		pxl->b = file[pos];
+		printf("OHHHHH\n");
 	}
 }
 

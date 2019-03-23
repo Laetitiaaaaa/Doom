@@ -6,7 +6,7 @@
 /*   By: jsauron <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:27:45 by jsauron           #+#    #+#             */
-/*   Updated: 2019/03/22 16:29:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/23 17:45:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@ void	fill_pxl(t_tga *tga, int i, int mode)
 	pos = 0;
 	if (mode == 1)
 	{
-		pos = i * (tga->bits_cm >> 3) + 1;
+		pos = i * (tga->bits_cm >> 3) + 1 + tga->len_cm;
 		read_color_cm(&tga->cm[i], tga->bits_cm, tga->colormap, pos);
 		printf("PAL A[%d] R[%d] G[%d] B[%d]  %d\n", tga->cm[i].a, tga->cm[i].r,  tga->cm[i].g, tga->cm[i].b, i);
 	}
 	else
 	{
-		(tga->bitspix == 32  || tga->bitspix == 24) ? pos = 2 : 0;
-		pos += i * (tga->bitspix >> 3) + tga->len_cm;
+//		(tga->bitspix == 32  || tga->bitspix == 24) ? pos = 2 : 0;
+		pos = i * (tga->bitspix >> 3);
+		pos += (pos > 100000 ? 1 : 0);
+	//	printf("%d, %d\n", pos, tga->w * tga->h);
 		read_color(&tga->pxl[i], tga->bitspix, tga->file, pos);
+	//	printf("%d DOne\n", pos);
 	}
 }
 
@@ -39,7 +42,7 @@ void	fill_data(t_tga *tga, int mode)
 	i = 0;
 	limit = (mode == 1) ? tga->len_cm : (tga->w * tga->h);
 	printf("limit = %d\n", limit);
-	while (i < limit)
+	while ((i * 4) < limit)
 	{
 		fill_pxl(tga, i, mode);
 		i++;
@@ -59,5 +62,7 @@ void	create_pxl(t_tga *tga)
 		range_pxl(tga);
 	}
 	else
+	{
 		fill_data(tga, 2);
+	}
 }

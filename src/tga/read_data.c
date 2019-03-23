@@ -6,7 +6,7 @@
 /*   By: jsauron <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:02:10 by jsauron           #+#    #+#             */
-/*   Updated: 2019/03/23 11:10:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/23 14:19:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@ int		read_hdr(t_tga *tga, int fd)
 {
 	unsigned char	buff[18];
 
-	read(fd, buff, 17);
+	if (read(fd, buff, 17) != 17)
+	{
+		ft_putstr("Invalid file\n");
+		return(0);
+	}
 	hdr_parser(tga, buff);
-	return (0);
+	return (1);
 }
 
 void	hdr_parser(t_tga *tga, unsigned char *hdr)
 {
-	int i;
-
-	i	= 0;
 	tga->color_type = hdr[1];
 	tga->compress = hdr[2];
 	tga->cm_begin = hdr[3] + (hdr[4] * 256);

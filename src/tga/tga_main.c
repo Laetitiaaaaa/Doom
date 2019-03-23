@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:08:00 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/22 15:42:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/23 18:04:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int		get_data_tga(t_tga *tga, const char *path)
 		return (0);
 	if (!S_ISREG(sts.st_mode))
 		return (0);
-	read_hdr(tga, fd);
+	if (read_hdr(tga, fd) == 0)
+		return (0);
 	tga->color_type ? read_cm(tga, fd) : 0;
 	read_data(tga, fd);
 	close(fd);
@@ -78,18 +79,27 @@ int		get_data_tga(t_tga *tga, const char *path)
 int		tga_load(t_tga *tga, const char *path)
 {
 	if (get_data_tga(tga, path) == 0)
+	{
 		ft_putstr("not a valid file or path\n");
+		return (0);
+	}
+	printf("Rle uncompress\n");
 	if (tga->compress >= 8)
 		rle_uncompress(tga);
+	printf("Rle pxl\n");
 	create_pxl(tga);
+	printf("rotate\n");
 	rotatepxl(tga);
 	printf("%s\n", path);
-//	int	i = 0;
+	printf("1 => %d\n", tga->alpha & 0x80);
+	printf("2 => %d\n", tga->alpha & 0x40);
+	//	int	i = 0;
 /*	while (i++ < (tga->w * tga->h) * 4)
 	{
 		printf("[%d]\t", tga->file[i]);
 		i % 8 ==0 ? printf("\n"): 0;
 		//printf("[%d,%d,%d,%d]\n", tga->pxl->a, tga->pxl->r, tga->pxl->g, tga->pxl->b);
 	}*/
+	
 	return (0);
 }

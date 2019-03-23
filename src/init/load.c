@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/23 11:03:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/23 16:35:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,7 @@ void		initload(t_win **wn)
 {
 	SDL_PollEvent(&(*wn)->ev);
 	printf("Debut load\n");
-/*	load_texture("./texture/home.tga", *wn);
-	SDL_Delay(3000);
-	load_texture("./texture/01.tga", *wn);
-	SDL_Delay(3000);
-	load_texture("./texture/02.tga", *wn);
-	SDL_Delay(3000);
-	load_texture("./texture/03.tga", *wn);
-	SDL_Delay(3000);
-*/	load_texture("./texture/icon.tga", *wn);
-/*	SDL_Delay(3000);
-	load_texture("./texture/ak47.tga", *wn);
-	SDL_Delay(3000);
-	load_texture("./texture/4.tga", *wn);
-	SDL_Delay(3000);
-	load_texture("./texture/5.tga", *wn);
-	SDL_Delay(3000);
-	load_texture("./texture/6.tga", *wn);
-	SDL_Delay(3000);
-	load_texture("./texture/chelou.tga", *wn);
-	SDL_Delay(3000);
-*/	printf("Fin load\n");
+	load_texture("./texture/test32.tga", *wn);
+	SDL_Delay(2000);
+	printf("Fin load\n");
 }

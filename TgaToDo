@@ -1,0 +1,15 @@
+Compressed	32	|||												\	KO
+Compressed	24	|||	Doesnt work									\	KO
+Compressed	16	|||												\	KO
+Compressed	8	||	No file										\	??
+file		8	||												\	OK
+file		16	|												\	OK
+file		24	|												\	OK
+file		32	|												\	OK
+File Cm		8	|												\	OK
+File Cm		16	|	??											\	??
+File Cm		24	|	??											\	??
+File Cm		32	|												\	OK
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Orientation De L'image	=====================>   Xorigin | Yorigin
