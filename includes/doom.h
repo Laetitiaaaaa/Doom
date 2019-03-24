@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/23 10:33:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/24 11:45:20 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ typedef struct		s_map
 	float			size;
 }					t_map;
 
+typedef struct		s_text
+{
+	char			*name;
+	SDL_Texture		*txt;
+	struct s_text	*next;
+}					t_text;
+
 typedef struct		s_win
 {
 	char			difficulty;
@@ -73,6 +80,7 @@ typedef struct		s_win
 	SDL_Event		ev;
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
+	t_text			*texture;
 	t_map			*map;
 	t_elem			*elem;
 }					t_win;
@@ -85,7 +93,7 @@ int					parsearg(int argc, char **argv, t_win **wn);
 int					init(t_win **wn);
 void				initwn(t_win **wn);
 void				initsdl(t_win **wn);
-void				load_texture(char *path, t_win *wn);
+int					load_texture(char *path, t_win *wn, char *name);
 void				initload(t_win **wn);
 
 void				option(t_win *wn);

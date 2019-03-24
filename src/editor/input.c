@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 19:02:08 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/17 17:19:18 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/24 15:43:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static void	resetmap(t_win *wn)
 
 void	inputeditor(t_win *wn)
 {
+	Uint16		mouse;
+	int			x;
+	int			y;
+
+	mouse = SDL_GetMouseState(&x, &y);
+	printf("%d, %d\n", x, y);
 	wn->state[SDL_SCANCODE_ESCAPE] ? stop_exec("ESCAPE\n", wn) : 0;
 	wn->state[SDL_SCANCODE_LEFT] ? wn->map->x -= (wn->map->size) : 0;
 	wn->state[SDL_SCANCODE_RIGHT] ? wn->map->x += (wn->map->size) : 0;

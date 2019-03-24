@@ -13,3 +13,13 @@ File Cm		32	|												\	OK
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 Orientation De L'image	=====================>   Xorigin | Yorigin
+
+
+
+DataColor => ReadColor     (File->Pxl)
+ReadData  => ReadData      (Load header) && Palette
+Rle		  => RleUncompress (Main rle)
+RleColor  => Loadnew       (Load rle => new)
+SetDataPxl=> FillPxl | FillData (Fill pxl)
+SetPxlColor=> FillPxlFromCm (Cm load)
+TgaMain	  => TgaLoad

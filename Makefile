@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/21 11:10:08 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/24 20:39:54 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ INIT_SRC		= init.c										\
 				  initwn.c										\
 				  sdl.c											\
 				  load.c										\
-				  load2.c
 
 GAME_SRC		= turn.c										\
 				  maingame.c
@@ -32,12 +31,11 @@ EDITOR_SRC		= mainedit.c									\
 
 OPTION_SRC		= mainoption.c									\
 
-TGA_SRC			= data_color.c									\
-				  read_data.c									\
-				  rle.c											\
-				  rle_color.c									\
-				  set_data_pxl.c								\
-				  set_pxl_color.c								\
+TGA_SRC			= data.c										\
+				  filldata.c									\
+				  createpxl.c									\
+				  uncompress.c									\
+				  old.c											\
 				  tga_main.c
 
 BASE_PATH		= ./src/
