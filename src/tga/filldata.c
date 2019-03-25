@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 17:51:45 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 21:14:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 11:43:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	bpp16(unsigned char *base, unsigned char *tofill, int index, int ind
 {
 	tofill[index2] = (base[index] & 0x80) != 0 ? 255 : 0;
 	tofill[index2 + 1] = ((base[index + 1] & 0x7C) >> 2) * 255 / 31;
-	tofill[index2 + 2] = ((base[index + 1] & 0x03) << 3);
+	tofill[index2 + 2] = ((base[index + 1] & 0x03) << 2);
 	tofill[index2 + 2] += ((base[index] & 0xE0) >> 5);
 	tofill[index2 + 3] = (base[index] & 0x1F) * 255 / 31;
 	tofill[index2 + 2] *= 255 / 31;

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 11:45:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 12:59:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "../libft/libft.h"
 # include "../libui/SDL2/SDL.h"
 
-# define	XSCREEN 1920
-# define	YSCREEN 1080
+# define	XSCREEN 1500
+# define	YSCREEN 1200
 
 typedef enum		e_bool
 {

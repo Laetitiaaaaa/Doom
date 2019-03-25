@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 21:18:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 13:13:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	tga2sur(t_tga *tga, SDL_Surface *surface, t_win *wn, char *name)
 //	SDL_RenderClear(wn->rend);
 	if (tga->data == NULL)
 		printf("data == null\n");
-	surface = SDL_CreateRGBSurfaceWithFormatFrom(tga->data, tga->w, tga->h, 32, 4 * tga->w, SDL_PIXELFORMAT_ARGB32);
+	surface = SDL_CreateRGBSurfaceWithFormatFrom(tga->data, tga->w, tga->h, 32, 4 * (tga->w), SDL_PIXELFORMAT_ARGB32);
 	txt = SDL_CreateTextureFromSurface(wn->rend, surface);
 	storetxt(wn, txt, name);
 	SDL_RenderCopy(wn->rend, txt, NULL, NULL);
@@ -73,8 +73,10 @@ void		initload(t_win **wn)
 	inittexture(wn);
 	SDL_PollEvent(&(*wn)->ev);
 	printf("Debut load\n");
+	load_texture("./texture/home.tga", *wn, "32");
+//	load_texture("./texture/bg2-2.tga", *wn, "32");
 	load_texture("./texture/icon.tga", *wn, "32");
-	load_texture("./texture/bg2-2.tga", *wn, "32");
+	load_texture("./texture/noodlenc.tga", *wn, "32");
 //	load_texture("./texture/noodle.tga", *wn, "32");
 //	load_texture("./texture/noodlenc.tga", *wn, "32");
 	printf("DONE\n");

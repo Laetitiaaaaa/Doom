@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 17:22:10 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 20:41:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 11:05:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int				uncompress(t_tga *tga)
 {
 	unsigned char	*ret;
 
+	printf("Compressed File\n");
 	ret = NULL;
 	if ((ret = (unsigned char *)malloc(sizeof(unsigned char) * tga->w * tga->h)) == NULL)
 		return (1);

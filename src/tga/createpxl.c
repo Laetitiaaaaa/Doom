@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:18:07 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 21:20:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 13:15:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ unsigned char *pxlbasecm(t_tga *tga, unsigned char *new)
 	index = 0;
 	tga->new_i = 0;
 	tga->data_i = 0;
-	while (tga->new_i < ((tga->w * tga->h * 4)))
+	while (tga->new_i <= ((tga->w * tga->h * 4)))
 	{
-		tga->data_i = tga->data[index] * (tga->cm_bpp >> 3);
 		fill(tga, tga->cm, new, tga->cm_bpp);
-		tga->new_i += 4;
 		index++;
+		tga->new_i += 4;
+		tga->data_i = tga->data[index] * (tga->cm_bpp >> 3);
 	}
 	return (new);
 }
@@ -33,7 +33,7 @@ unsigned char *pxlbase(t_tga *tga, unsigned char *new)
 {
 	tga->new_i = 0;
 	tga->data_i = 0;
-	while (tga->new_i < ((tga->w * tga->h * 4)))
+	while (tga->new_i <= (tga->w * tga->h * 4))
 	{
 		fill(tga, tga->data, new, tga->data_bpp);
 		tga->new_i += 4;
@@ -53,7 +53,7 @@ int			createpxl(t_tga *tga)
 	else
 		ret = pxlbasecm(tga, ret);
 	free(tga->data);
-	tga->data = ret;
-//	printf("cm_Bpp = %d | Data_Bpp = %d\n", tga->cm_bpp, tga->data_bpp);
+	tga->data = &(ret[0]);
+	printf("Create pxl end\n");
 	return (0);
 }

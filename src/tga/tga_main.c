@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 16:26:36 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 21:07:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 13:08:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_tga		*load_tga(const char *path)
 		ft_putstr("Invalid file or path\n");
 		return (cleartga(tga));
 	}
-	printf("Uncompress\n");
 	if (tga->compress > 8)
 	{
 		if (uncompress(tga) == 1)
@@ -50,6 +49,6 @@ t_tga		*load_tga(const char *path)
 	}
 	else if (createpxl(tga) == 1)
 		return (cleartga(tga));
-	rotatepxl(tga);
+//	rotatepxl(tga);
 	return (tga);
 }
