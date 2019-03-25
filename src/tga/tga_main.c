@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 16:26:36 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 15:03:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 17:43:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_tga		*load_tga(const char *path)
 		return (cleartga(tga));
 	if (tga->xorigin == 0)
 		rotatepxl(tga);
-/*	if (tga->yorigin == 0)
+	if (tga->yorigin == 0)
 		sym_vert(tga);
-*/	return (tga);
+	return (tga);
 }

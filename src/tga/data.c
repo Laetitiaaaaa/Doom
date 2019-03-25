@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 16:37:58 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 13:09:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 17:41:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int		getheader(t_tga *tga)
 	tga->cm_bpp = buff[7];
 	tga->xorigin = buff[8] + (buff[9] * 0xFF);
 	tga->yorigin = buff[10] + (buff[11] * 0xFF);
-	tga->w = buff[12] + (buff[13] * 0xFF);
-	tga->h = buff[14] + (buff[15] * 0xFF);
+	tga->w = buff[12] + (buff[13] * 0x100);
+	tga->h = buff[14] + (buff[15] * 0x100);
 	tga->data_bpp = buff[16];
 	tga->descriptor = buff[17];
 	printf("w = [%d], h = [%d]\n", tga->w, tga->h);

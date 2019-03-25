@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 15:30:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 17:43:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void		initload(t_win **wn)
 	inittexture(wn);
 	SDL_PollEvent(&(*wn)->ev);
 	printf("=========================\n");
-	load_texture("./texture/face.tga", *wn, "32");
-	printf("=========================\n");
+//	load_texture("./texture/face.tga", *wn, "32");
+//	printf("=========================\n");
 	load_texture("./texture/home.tga", *wn, "32");
 	printf("=========================\n");
 	load_texture("./texture/home2.tga", *wn, "32");
@@ -87,10 +87,10 @@ void		initload(t_win **wn)
 	printf("=========================\n");
 	load_texture("./texture/noodle.tga", *wn, "32");
 	printf("=========================\n");
-	load_texture("./texture/test24.tga", *wn, "24");
-	printf("=========================\n");
-	load_texture("./texture/01.tga", *wn, "24");
-	printf("=========================\n");
+//	load_texture("./texture/test24.tga", *wn, "24");
+//	printf("=========================\n");
+//	load_texture("./texture/01.tga", *wn, "24");
+//	printf("=========================\n");
 	load_texture("./texture/ak47.tga", *wn, "24");
 	printf("=========================\n");
 	//load_texture("./texture/test24c.tga", *wn, "24");

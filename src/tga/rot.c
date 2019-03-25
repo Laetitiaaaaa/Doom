@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:08:00 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 14:30:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 18:20:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	sym_vert(t_tga *tga)
 	while (i < tga->h)
 	{
 		j = 0;
-		while (j < tga->w * 4)
+		while ((j >> 2) < tga->w)
 		{
 			done[nb] = tga->data[((i * tga->w * 4)) - j];
 			done[nb + 3] = tga->data[((i * tga->w * 4)) - (j + 1)];
