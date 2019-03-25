@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 13:54:50 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 20:39:25 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 15:32:19 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ typedef struct		s_tga
 	int				fd;
 	int				data_i;
 	int				new_i;
+	int				truevision;
 }					t_tga;
 
-
+void			sym_vert(t_tga *tga);
 void			rotatepxl(t_tga *tga);
 void			fill(t_tga *tga, unsigned char *base, unsigned char *tofill, int bpp);
 unsigned char 	*pxlbasecm(t_tga *tga, unsigned char *newstr);

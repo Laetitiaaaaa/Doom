@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:20:52 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/24 14:59:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 15:32:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void		edit(t_win *wn)
 	while (tmp->next != NULL)
 	{
 		inputeditor(wn);
-		printf("%s\n", tmp->name);
 		SDL_SetRenderDrawColor(wn->rend, 0, 0, 0, 0);
 		SDL_RenderClear(wn->rend);
 		SDL_RenderCopy(wn->rend, wn->texture->txt, NULL, NULL);

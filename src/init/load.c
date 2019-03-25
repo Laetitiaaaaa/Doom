@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 13:13:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 15:30:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static int	tga2sur(t_tga *tga, SDL_Surface *surface, t_win *wn, char *name)
 {
 	SDL_Texture *txt;
 
-//	SDL_SetRenderDrawColor(wn->rend, 0, 0, 0, 0);
-//	SDL_RenderClear(wn->rend);
 	if (tga->data == NULL)
 		printf("data == null\n");
 	surface = SDL_CreateRGBSurfaceWithFormatFrom(tga->data, tga->w, tga->h, 32, 4 * (tga->w), SDL_PIXELFORMAT_ARGB32);
@@ -72,15 +70,29 @@ void		initload(t_win **wn)
 {
 	inittexture(wn);
 	SDL_PollEvent(&(*wn)->ev);
-	printf("Debut load\n");
+	printf("=========================\n");
+	load_texture("./texture/face.tga", *wn, "32");
+	printf("=========================\n");
 	load_texture("./texture/home.tga", *wn, "32");
-//	load_texture("./texture/bg2-2.tga", *wn, "32");
+	printf("=========================\n");
+	load_texture("./texture/home2.tga", *wn, "32");
+	printf("=========================\n");
+	load_texture("./texture/home3.tga", *wn, "32");
+	printf("=========================\n");
+	load_texture("./texture/bg2-2.tga", *wn, "32");
+	printf("=========================\n");
 	load_texture("./texture/icon.tga", *wn, "32");
+	printf("=========================\n");
 	load_texture("./texture/noodlenc.tga", *wn, "32");
-//	load_texture("./texture/noodle.tga", *wn, "32");
-//	load_texture("./texture/noodlenc.tga", *wn, "32");
-	printf("DONE\n");
+	printf("=========================\n");
+	load_texture("./texture/noodle.tga", *wn, "32");
+	printf("=========================\n");
+	load_texture("./texture/test24.tga", *wn, "24");
+	printf("=========================\n");
+	load_texture("./texture/01.tga", *wn, "24");
+	printf("=========================\n");
+	load_texture("./texture/ak47.tga", *wn, "24");
+	printf("=========================\n");
 	//load_texture("./texture/test24c.tga", *wn, "24");
 	//load_texture("./texture/test16c.tga", *wn, "16");
-	printf("Fin load\n");
 }

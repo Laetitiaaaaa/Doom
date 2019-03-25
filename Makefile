@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/24 20:39:54 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/25 14:30:36 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ TGA_SRC			= data.c										\
 				  filldata.c									\
 				  createpxl.c									\
 				  uncompress.c									\
-				  old.c											\
+				  rot.c											\
 				  tga_main.c
 
 BASE_PATH		= ./src/

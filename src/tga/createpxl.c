@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:18:07 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 13:15:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/25 15:25:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int			createpxl(t_tga *tga)
 {
 	unsigned char *ret;
 
+	tga->truevision = ft_strcmp((const char *)&tga->data[(tga->w * tga->h * (tga->data_bpp >> 3)) - 18], "TRUEVISION-XFILE.");
 	if ((ret = (unsigned char *)malloc(sizeof(unsigned char) * tga->w * tga->h * 4)) == NULL)
 		return (1);
 	if (tga->compress == 2 || tga->compress == 3)
@@ -54,6 +55,5 @@ int			createpxl(t_tga *tga)
 		ret = pxlbasecm(tga, ret);
 	free(tga->data);
 	tga->data = &(ret[0]);
-	printf("Create pxl end\n");
 	return (0);
 }
