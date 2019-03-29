@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 17:43:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/29 15:40:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static int	tga2sur(t_tga *tga, SDL_Surface *surface, t_win *wn, char *name)
 	surface = SDL_CreateRGBSurfaceWithFormatFrom(tga->data, tga->w, tga->h, 32, 4 * (tga->w), SDL_PIXELFORMAT_ARGB32);
 	txt = SDL_CreateTextureFromSurface(wn->rend, surface);
 	storetxt(wn, txt, name);
-	SDL_RenderCopy(wn->rend, txt, NULL, NULL);
-	SDL_RenderPresent(wn->rend);
 	SDL_FreeSurface(surface);
 	return (0);
 }
@@ -53,7 +51,7 @@ int			load_texture(char *path, t_win *wn, char *name)
 		stop_exec("Cant malloc tga\n", wn);
 	if ((tga = load_tga(path)) == NULL)
 	{
-		free(tga);
+		free_tga(tga);
 		return (1);
 	}
 	tga2sur(tga, surface, wn, name);
@@ -64,35 +62,13 @@ void		inittexture(t_win **wn)
 {
 	(((*wn)->texture = (t_text*)malloc(sizeof(t_text))) == NULL ? stop_exec("Cant init texture\n", *wn) : 0);
 	(*wn)->texture->next = NULL;
+	(*wn)->texture->name = NULL;
 }
 
 void		initload(t_win **wn)
 {
 	inittexture(wn);
 	SDL_PollEvent(&(*wn)->ev);
-	printf("=========================\n");
-//	load_texture("./texture/face.tga", *wn, "32");
-//	printf("=========================\n");
-	load_texture("./texture/home.tga", *wn, "32");
-	printf("=========================\n");
-	load_texture("./texture/home2.tga", *wn, "32");
-	printf("=========================\n");
-	load_texture("./texture/home3.tga", *wn, "32");
-	printf("=========================\n");
-	load_texture("./texture/bg2-2.tga", *wn, "32");
-	printf("=========================\n");
-	load_texture("./texture/icon.tga", *wn, "32");
-	printf("=========================\n");
-	load_texture("./texture/noodlenc.tga", *wn, "32");
-	printf("=========================\n");
-	load_texture("./texture/noodle.tga", *wn, "32");
-	printf("=========================\n");
-//	load_texture("./texture/test24.tga", *wn, "24");
-//	printf("=========================\n");
-//	load_texture("./texture/01.tga", *wn, "24");
-//	printf("=========================\n");
-	load_texture("./texture/ak47.tga", *wn, "24");
-	printf("=========================\n");
-	//load_texture("./texture/test24c.tga", *wn, "24");
-	//load_texture("./texture/test16c.tga", *wn, "16");
+	load_texture("./texture/menu/menu.tga", *wn, "menu");
+	load_texture("./texture/menu/cursor.tga", *wn, "cursor");
 }

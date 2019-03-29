@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 13:54:50 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 15:32:19 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:01:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int				getfile(t_tga *tga, const char *path);
 void			*cleartga(t_tga *tga);
 int				inittga(t_tga *tga);
 t_tga			*load_tga(const char *path);
+void			*free_tga(t_tga *tga);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 12:59:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:27:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ typedef enum		e_interface
 {
 	MENU,
 	GAME,
+	MGAME,
 	LGAME,
 	RGAME,
 	EDITEUR,
+	MEDITEUR,
 	LEDITEUR,
-	TEDITEUR,
+	NEDITEUR,
 	REDITEUR,
 	OPTION,
-	COPTION,
-	TOPTION,
+	BOPTION,
+	KEYOPTION,
 	LOADING,
 	PAUSE,
 }					t_interface;
@@ -71,6 +73,11 @@ typedef struct		s_text
 	struct s_text	*next;
 }					t_text;
 
+typedef struct		s_menu
+{
+	int				choice;
+}					t_menu;
+
 typedef struct		s_win
 {
 	char			difficulty;
@@ -81,8 +88,11 @@ typedef struct		s_win
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
 	t_text			*texture;
+	SDL_Texture		*txtnotload;
+	SDL_Texture		*loading;
 	t_map			*map;
 	t_elem			*elem;
+	t_menu			*menu;
 }					t_win;
 
 void				edit(t_win *wn);
@@ -94,14 +104,19 @@ int					init(t_win **wn);
 void				initwn(t_win **wn);
 void				initsdl(t_win **wn);
 int					load_texture(char *path, t_win *wn, char *name);
+SDL_Texture			*initload2(t_win **wn, const char *path);
 void				initload(t_win **wn);
+SDL_Texture			*findtexture(t_win *wn, const char *path);
 
 void				option(t_win *wn);
 
 void				menu(t_win *wn);
+void				menuinput(t_win *wn);
+void				showmenu(t_win *wn);
 
 void				turn(t_win *wn);
 void				game(t_win *wn);
+void				setkeyboard(Uint8 *new, Uint8 *current);
 
 void				stop_exec(char *msg, t_win *wn);
 

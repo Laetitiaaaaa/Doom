@@ -6,24 +6,29 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/25 14:30:36 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/29 13:32:48 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= doom
 
-BASE_SRC		= main.c
+BASE_SRC		= main.c										\
+				  turn.c
 
 INIT_SRC		= init.c										\
 				  parse.c										\
 				  initwn.c										\
 				  sdl.c											\
 				  load.c										\
+				  load2.c										\
+				  texture.c										\
 
-GAME_SRC		= turn.c										\
+GAME_SRC		= input.c										\
 				  maingame.c
 
-MENU_SRC		= mainmenu.c
+MENU_SRC		= mainmenu.c									\
+				  menuinput.c									\
+				  show.c
 
 EDITOR_SRC		= mainedit.c									\
 				  printscreen.c 								\
@@ -85,7 +90,7 @@ FRAME			= -framework OpenGL -framework AppKit
 	@$(GCC) $(INC) -o $@ -c $< $(FLAGS)
 
 $(NAME): $(OBJS)
-	@$(GCC) -o $@ `sdl2-config --cflags --libs` $(OBJS) $(LIB) $(LIBFT) $(LIBMLX) $(FRAME) $(FLAGS)
+	@$(GCC) -o $@ `sdl2-config --cflags --libs` $(OBJS) $(LIB) $(LIBFT) $(LIBMLX) $(FRAME) $(FLAGS) -g -fsanitize=address
 
 all : $(NAME)
 

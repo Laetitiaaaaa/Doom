@@ -23,3 +23,8 @@ RleColor  => Loadnew       (Load rle => new)
 SetDataPxl=> FillPxl | FillData (Fill pxl)
 SetPxlColor=> FillPxlFromCm (Cm load)
 TgaMain	  => TgaLoad
+
+
+
+|*|
+[=====================][====================][]

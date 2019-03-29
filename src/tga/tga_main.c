@@ -6,25 +6,33 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 16:26:36 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 17:43:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/28 16:25:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tga_reader.h"
-#include "../../includes/doom.h"
+#include "../includes/tga_reader.h"
 
-void		*cleartga(t_tga *tga)
+void		*free_tga(t_tga *tga)
 {
 	if (tga != NULL)
 	{
-		printf("FREE HERE\n");
+		tga->data != NULL ? free(tga->data) : 0;
+		tga->cm != NULL ? free(tga->cm) : 0;
+		tga->info != NULL ? free(tga->info) : 0;
+		tga->done != NULL ? free(tga->done) : 0;
 	}
 	return (NULL);
 }
 
 int			inittga(t_tga *tga)
 {
-	(void)tga;
+	tga->data = NULL;
+	tga->cm = NULL;
+	tga->info = NULL;
+	tga->done = NULL;
+	tga->fd = 0;
+	tga->data_i = 0;
+	tga->new_i = 0;
 	return (0);
 }
 
@@ -33,26 +41,25 @@ t_tga		*load_tga(const char *path)
 	t_tga	*tga;
 
 	tga = NULL;
-	printf("%s\n", path);
 	if ((tga = (t_tga*)malloc(sizeof(t_tga))) == NULL)
 		return (NULL);
 	if (inittga(tga) == 1)
-		return (cleartga(tga));
+		return (free_tga(tga));
 	if (getfile(tga, path) == 1)
 	{
 		ft_putstr("Invalid file or path\n");
-		return (cleartga(tga));
+		return (free_tga(tga));
 	}
 	if (tga->compress > 8)
 	{
 		if (uncompress(tga) == 1)
-			return (cleartga(tga));
+			return (free_tga(tga));
 	}
 	else if (createpxl(tga) == 1)
-		return (cleartga(tga));
+		return (free_tga(tga));
 	if (tga->xorigin == 0)
 		rotatepxl(tga);
-	if (tga->yorigin == 0)
+	if (tga->yorigin == 0 && tga->new_i == (tga->w * tga->h * 4))
 		sym_vert(tga);
 	return (tga);
 }

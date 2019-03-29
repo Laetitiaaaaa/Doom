@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 11:07:03 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/25 15:30:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:08:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,21 @@ static void	showline2(t_win *wn)
 	float		j;
 
 	j = wn->map->y;
+	i = wn->map->x;
 	if (wn->map->size > 1)
 	{
 		SDL_SetRenderDrawColor(wn->rend, 50 + (wn->map->size * 20 / 6), 50 + (wn->map->size * 20 / 6), 50 + (wn->map->size * 20 / 6), 0);
-		while (j <= (wn->map->h + wn->map->y + 1) && j < YSCREEN)
+
+		while (j <= wn->map->y + wn->map->h)
 		{
-			i = wn->map->x;
-			while (i <= (fabs(wn->map->w) + wn->map->x + 1) && i < XSCREEN)
-			{
-				SDL_RenderDrawLine(wn->rend, i, j, i, (wn->map->h + (wn->map->y < 0 ? wn->map->y : 0)));
-				SDL_RenderDrawLine(wn->rend, i, j, (wn->map->w + (wn->map->x < 0 ? wn->map->x : 0)), j);
-				i += wn->map->w / 40;
-			}
+			SDL_RenderDrawLine(wn->rend, wn->map->x, j, wn->map->w + wn->map->x, j);
 			j += wn->map->h / 40;
+		}
+		j = wn->map->y;
+		while (i <= wn->map->x + wn->map->w)
+		{
+			SDL_RenderDrawLine(wn->rend, i, wn->map->y, i, wn->map->h + wn->map->y);
+			i += wn->map->w / 40;
 		}
 	}
 }
@@ -68,47 +70,47 @@ static void	showline(t_win *wn)
 	float		j;
 
 	j = wn->map->y;
+	i = wn->map->x;
 	showline2(wn);
 	SDL_SetRenderDrawColor(wn->rend, 150, 100, 100, 0);
-	while (j <= (wn->map->h + wn->map->y + 1) && j < YSCREEN)
+	while (j <= wn->map->y + wn->map->h)
 	{
-		i = wn->map->x;
-		while (i <= (wn->map->w + wn->map->x + 1) && i < XSCREEN)
-		{
-			SDL_RenderDrawLine(wn->rend, i, j, i, (wn->map->h + (wn->map->y < 0 ? wn->map->y : 0)));
-			SDL_RenderDrawLine(wn->rend, i, j, (wn->map->w + (wn->map->x < 0 ? wn->map->x : 0)), j);
-			i += wn->map->w / 10;
-		}
+		SDL_RenderDrawLine(wn->rend, wn->map->x, j, wn->map->w + wn->map->x, j);
 		j += wn->map->h / 10;
+	}
+	j = wn->map->y;
+	while (i <= wn->map->x + wn->map->w)
+	{
+		SDL_RenderDrawLine(wn->rend, i, wn->map->y, i, wn->map->h + wn->map->y);
+		i += wn->map->w / 10;
 	}
 }
 
 static void	showmap(t_win *wn)
 {
-//	float	x;
-//	float	y;
+	/*	float	x;
+		float	y;
 
-//	y = wn->map->y;
-/*	while (y < (wn->map->y + wn->map->h) && y < YSCREEN)
-	{
+		y = wn->map->y;
+		while (y < (wn->map->y + wn->map->h) && y < YSCREEN)
+		{
 		x = wn->map->x;
 		while(x < (wn->map->x + wn->map->w) && x < XSCREEN)
 		{
-			SDL_SetRenderDrawColor(wn->rend, 50, 50, 50, 0);
-			SDL_RenderDrawPoint(wn->rend, x, y);
-			x++;
+		SDL_SetRenderDrawColor(wn->rend, 50, 50, 50, 0);
+		SDL_RenderDrawPoint(wn->rend, x, y);
+		x++;
 		}
 		y++;
-	}
-*/	showline(wn);
+		}*/
+	showline(wn);
 	showelem(wn);
 }
 
 void		printeditor(t_win *wn)
 {
-//	SDL_SetRenderDrawColor(wn->rend, 0, 0, 0, 0);
-//	SDL_RenderClear(wn->rend);
-	SDL_RenderCopy(wn->rend, wn->texture->txt, NULL, NULL);
+	SDL_SetRenderDrawColor(wn->rend, 50, 50, 50, 0);
+	SDL_RenderClear(wn->rend);
 	showmap(wn);
 	SDL_RenderPresent(wn->rend);
 }
