@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 13:54:50 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/28 12:01:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/31 13:11:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TGA_READER_H
 
 # include "../libft/libft.h"
-# include "../libui/SDL2/SDL.h"
+# include "../SDL2-2.0.9/include/SDL.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 

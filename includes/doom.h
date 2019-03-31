@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/29 14:27:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/31 21:35:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "../libft/libft.h"
-# include "../libui/SDL2/SDL.h"
+# include "../SDL2-2.0.9/include/SDL.h"
 
 # define	XSCREEN 1500
 # define	YSCREEN 1200
@@ -90,6 +90,7 @@ typedef struct		s_win
 	t_text			*texture;
 	SDL_Texture		*txtnotload;
 	SDL_Texture		*loading;
+	SDL_Texture		*loadingscreen;
 	t_map			*map;
 	t_elem			*elem;
 	t_menu			*menu;
@@ -100,15 +101,19 @@ void				inputeditor(t_win *wn);
 void				printeditor(t_win *wn);
 
 int					parsearg(int argc, char **argv, t_win **wn);
+void				showload(t_win **wn, int load);
 int					init(t_win **wn);
 void				initwn(t_win **wn);
 void				initsdl(t_win **wn);
 int					load_texture(char *path, t_win *wn, char *name);
+void				inittexture(t_win **wn);
 SDL_Texture			*initload2(t_win **wn, const char *path);
 void				initload(t_win **wn);
 SDL_Texture			*findtexture(t_win *wn, const char *path);
 
 void				option(t_win *wn);
+void				optioninput(t_win *wn);
+void				showoption(t_win *wn);
 
 void				menu(t_win *wn);
 void				menuinput(t_win *wn);

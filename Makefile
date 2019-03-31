@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/29 13:32:48 by lomasse          ###   ########.fr        #
+#    Updated: 2019/03/31 15:29:24 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ EDITOR_SRC		= mainedit.c									\
 				  input.c
 
 OPTION_SRC		= mainoption.c									\
+				  optioninput.c									\
+				  showoption.c									\
 
 TGA_SRC			= data.c										\
 				  filldata.c									\
@@ -75,27 +77,39 @@ GCC				= gcc
 
 FLAGS			= -Wall -Wextra -Werror
 
+DEBUG			= -g -fsanitize=address
+
 OBJS			= $(addprefix $(OBJ), $(SRCS:.c=.o))
 
 MAKELIB			= make re -C libft/
 
 LIBFT			= -Llibft/ -lft
+LIB_FT			= libft/libft.a
 
-LIBMLX			= -L ./libui -lSDL2 -lSDL2_mixer
+LIBSDL			= -L ./libui -lSDL2 -lSDL2_mixer
+
+SDL_DIR			= SDL2-2.0.9
+SDL_LIB			= $(SDL_DIR)/build/.libs/libSDL2.a
+SDL_INC			= -I ./$(SDL_DIR)/include/
 
 FRAME			= -framework OpenGL -framework AppKit
 
 
 %.o: %.c ./includes/doom.h ./includes/tga_reader.h
-	@$(GCC) $(INC) -o $@ -c $< $(FLAGS)
+	@$(GCC) $(INC) $(SDL_INC) -o $@ -c $< $(FLAGS)
 
-$(NAME): $(OBJS)
-	@$(GCC) -o $@ `sdl2-config --cflags --libs` $(OBJS) $(LIB) $(LIBFT) $(LIBMLX) $(FRAME) $(FLAGS) -g -fsanitize=address
+$(NAME): $(SDL_DIR) $(LIB_FT) $(OBJS)
+	@$(GCC) -o $@ `sdl2-config --cflags --libs` $(OBJS) $(LIB) $(LIBFT) $(SDL_INC) $(FRAME) $(FLAGS) $(DEBUG)
+
+$(LIB_FT):
+	make -C libft
+
+$(SDL_DIR):
+	$(shell tar -xzf ./libui/$(SDL_DIR).tar.gz)
+	cd $(SDL_DIR) && ./configure
+	cd $(SDL_DIR) && make
 
 all : $(NAME)
-
-cake : $(NAME)
-	@clear ; cat texture/portal.txt ; echo "\n\n" ; cat texture/cake.txt ;
 
 clean :
 	@rm -rf $(OBJS) ; echo "Obj Cleaned"
@@ -104,8 +118,5 @@ fclean : clean
 	@rm -rf $(NAME) ; echo "Exec Cleaned"
 
 re : fclean all
-
-relibft : 
-	$(MAKELIB)
 
 .PHONY : all clean fclean re

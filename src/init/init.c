@@ -6,38 +6,55 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:00:01 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/29 15:38:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/31 21:34:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/doom.h"
 
-int		init(t_win **wn)
+static void		loadmenu(t_win **wn)
+{
+	load_texture("./texture/menu/menu.tga", *wn, "menu");
+	load_texture("./texture/menu/cursor.tga", *wn, "cursor");
+	showload(wn, 40);
+	load_texture("./texture/menuedit.tga", *wn, "menuedit");
+	load_texture("./texture/menugame.tga", *wn, "menugame");
+	showload(wn, 50);
+	load_texture("./texture/transitioneditor.tga", *wn, "transitionedit");
+	load_texture("./texture/transitiongame.tga", *wn, "transitiongame");
+	load_texture("./texture/transitionoption.tga", *wn, "transitionoption");
+	showload(wn, 70);
+	load_texture("./texture/option.tga", *wn, "transitionoption");
+	showload(wn, 99);
+}
+
+void			showload(t_win **wn, int load)
 {
 	SDL_Rect	loading;
-	SDL_Event	ev;
 
 	loading.x = 20;
-	loading.y = 200;
+	loading.y = (YSCREEN / 4) * 3;
+	loading.w = (load * XSCREEN / 100) - 40;
 	loading.h = 20;
-	loading.w = (XSCREEN / 4);
+	SDL_RenderCopy((*wn)->rend, (*wn)->loadingscreen, NULL, NULL);
+	SDL_RenderCopy((*wn)->rend, (*wn)->loading, NULL, &loading);
+	SDL_RenderPresent((*wn)->rend);
+}
+
+int				init(t_win **wn)
+{
+	SDL_Event	ev;
+
 	initwn(wn);
 	initsdl(wn);
 	SDL_PollEvent(&ev);
-	SDL_SetRenderDrawColor((*wn)->rend, 100, 100, 100, 0);
-	SDL_RenderClear((*wn)->rend);
 	(*wn)->loading = initload2(wn, "./texture/loading.tga");
-	SDL_RenderCopy((*wn)->rend, (*wn)->loading, NULL, &loading);
-	SDL_RenderPresent((*wn)->rend);
-	loading.w += (XSCREEN / 4);
-	SDL_Delay(3000);
+	(*wn)->loadingscreen = initload2(wn, "./texture/loadingscreen.tga");
+	showload(wn, 10);
 	(*wn)->txtnotload = initload2(wn, "./texture/failedload.tga");
-	SDL_SetRenderDrawColor((*wn)->rend, 100, 100, 100, 0);
-	SDL_RenderClear((*wn)->rend);
-	SDL_RenderCopy((*wn)->rend, (*wn)->loading, NULL, &loading);
-	SDL_RenderPresent((*wn)->rend);
-	SDL_Delay(3000);
-	loading.w += (20 / XSCREEN);
-	initload(wn);
+	showload(wn, 15);
+	inittexture(wn);
+	showload(wn, 30);
+	loadmenu(wn);
 	return (1);
 }

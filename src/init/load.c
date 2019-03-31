@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/29 15:40:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/31 21:36:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,4 @@ void		inittexture(t_win **wn)
 	(((*wn)->texture = (t_text*)malloc(sizeof(t_text))) == NULL ? stop_exec("Cant init texture\n", *wn) : 0);
 	(*wn)->texture->next = NULL;
 	(*wn)->texture->name = NULL;
-}
-
-void		initload(t_win **wn)
-{
-	inittexture(wn);
-	SDL_PollEvent(&(*wn)->ev);
-	load_texture("./texture/menu/menu.tga", *wn, "menu");
-	load_texture("./texture/menu/cursor.tga", *wn, "cursor");
 }

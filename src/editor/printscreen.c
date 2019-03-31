@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 11:07:03 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/29 13:08:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/03/30 16:38:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,21 +88,6 @@ static void	showline(t_win *wn)
 
 static void	showmap(t_win *wn)
 {
-	/*	float	x;
-		float	y;
-
-		y = wn->map->y;
-		while (y < (wn->map->y + wn->map->h) && y < YSCREEN)
-		{
-		x = wn->map->x;
-		while(x < (wn->map->x + wn->map->w) && x < XSCREEN)
-		{
-		SDL_SetRenderDrawColor(wn->rend, 50, 50, 50, 0);
-		SDL_RenderDrawPoint(wn->rend, x, y);
-		x++;
-		}
-		y++;
-		}*/
 	showline(wn);
 	showelem(wn);
 }
