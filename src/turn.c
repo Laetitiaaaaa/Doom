@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:12:44 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/29 14:30:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/04 20:43:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	turn(t_win *wn)
 	Uint8	difftime;
 	Uint8	time;
 
+	intro(wn);
 	while (TRUE)
 	{
 		time = SDL_GetTicks();

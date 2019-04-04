@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/03/31 15:29:24 by lomasse          ###   ########.fr        #
+#    Updated: 2019/04/04 21:04:50 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,8 @@ TGA_SRC			= data.c										\
 				  rot.c											\
 				  tga_main.c
 
+CINE_SRC		= intro.c
+
 BASE_PATH		= ./src/
 
 GAME_PATH		= ./src/game/
@@ -59,6 +61,8 @@ OPTION_PATH		= ./src/option/
 
 TGA_PATH		= ./src/tga/
 
+CINE_PATH		= ./src/cinematique/
+
 OBJ_PATH		= ./OBJ
 
 SRCS			=	$(addprefix $(BASE_PATH), $(BASE_SRC))			\
@@ -68,6 +72,7 @@ SRCS			=	$(addprefix $(BASE_PATH), $(BASE_SRC))			\
 					$(addprefix $(OPTION_PATH), $(OPTION_SRC))		\
 					$(addprefix $(EDITOR_PATH), $(EDITOR_SRC))		\
 					$(addprefix $(TGA_PATH), $(TGA_SRC))			\
+					$(addprefix $(CINE_PATH), $(CINE_SRC))			\
 
 INC				= -I ./includes
 

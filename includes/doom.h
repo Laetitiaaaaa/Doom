@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/31 21:35:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/04 21:03:13 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void				option(t_win *wn);
 void				optioninput(t_win *wn);
 void				showoption(t_win *wn);
 
+void				intro(t_win *wn);
 void				menu(t_win *wn);
 void				menuinput(t_win *wn);
 void				showmenu(t_win *wn);
