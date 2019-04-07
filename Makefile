@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/04/04 21:04:50 by lomasse          ###   ########.fr        #
+#    Updated: 2019/04/07 16:41:11 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INIT_SRC		= init.c										\
 				  sdl.c											\
 				  load.c										\
 				  load2.c										\
+				  load_intro.c									\
 				  texture.c										\
 
 GAME_SRC		= input.c										\
@@ -91,7 +92,7 @@ MAKELIB			= make re -C libft/
 LIBFT			= -Llibft/ -lft
 LIB_FT			= libft/libft.a
 
-LIBSDL			= -L ./libui -lSDL2 -lSDL2_mixer
+LIBSDL			= -L ./libui -lSDL2 -lSDL2_mixer -lpthread
 
 SDL_DIR			= SDL2-2.0.9
 SDL_LIB			= $(SDL_DIR)/build/.libs/libSDL2.a

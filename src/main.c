@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 15:27:26 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/22 09:28:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/05 12:52:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int		main(int argc, char **argv)
 	t_win	*wn;
 
 	(wn = malloc(sizeof(t_win))) == NULL ? stop_exec("Malloc failed\n", wn): 0;
-	init(&wn) == 0 ? stop_exec("Init failed\n", wn) : 0;
-	parsearg(argc, argv, &wn) == 0 ? stop_exec("", wn) : 0;
+	init(&wn, argc, argv) == 0 ? stop_exec("Init failed\n", wn) : 0;
 	turn(wn);
 }

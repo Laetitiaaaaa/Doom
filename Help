@@ -1,0 +1,17 @@
+Linked list img =>
+[ INTRO ] => [MENU] => [GAME]
+	|			|		 |
+	V			V		 v
+ [MAIN]				  [WEAPON]
+	|					 |
+	V					 V
+ [OPTION]			   [WALL]
+ 	|
+	V
+ [EDITEUR]
+ 	|
+	V
+ [GAME]
+	|
+	V
+  NULL

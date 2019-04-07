@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 20:46:22 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/04 21:16:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/05 13:31:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ void	intro(t_win *wn)
 		SDL_RenderCopy(wn->rend, texture, NULL, NULL);
 		SDL_RenderPresent(wn->rend);
 		name = changename(name);
-		img++;
+		img += 2;
+	}
+}
+
+void	showintro(t_win *wn)
+{
+	t_text	*img;
+
+	img = findpostxt(wn, "main", "intro", "1");
+	if (img != NULL)
+	{
+		while (img->next != NULL)
+		{
+			SDL_RenderCopy(wn->rend, img->txt, NULL, NULL);
+			SDL_RenderPresent(wn->rend);
+			img = img->next;
+			SDL_Delay(30);
+		}
 	}
 }

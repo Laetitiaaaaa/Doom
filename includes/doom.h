@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/04 21:03:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/07 17:12:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <math.h>
+# include <pthread.h>
 # include "../libft/libft.h"
 # include "../SDL2-2.0.9/include/SDL.h"
 
@@ -68,10 +69,21 @@ typedef struct		s_map
 
 typedef struct		s_text
 {
+	char			*type;
+	char			*subtype;
 	char			*name;
 	SDL_Texture		*txt;
+	struct s_text	*next_type;
+	struct s_text	*next_subtype;
 	struct s_text	*next;
 }					t_text;
+
+typedef struct		s_thread
+{
+	pthread_t		thd;
+	struct s_win	*wn;
+	int				value;
+}					t_thread;
 
 typedef struct		s_menu
 {
@@ -81,9 +93,13 @@ typedef struct		s_menu
 typedef struct		s_win
 {
 	char			difficulty;
+	char			quality;
 	char			debug;
 	char			interface;
+	char			oldinterface;
+	char			*tmp;
 	Uint8			*state;
+	Uint8			*old;
 	SDL_Event		ev;
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
@@ -100,21 +116,27 @@ void				edit(t_win *wn);
 void				inputeditor(t_win *wn);
 void				printeditor(t_win *wn);
 
+t_text				*findpostxt(t_win *wn, char *type, char *subtype, char *name);
+t_text				*findpos(t_win *wn, char *type, char *subtype, char *name);
 int					parsearg(int argc, char **argv, t_win **wn);
 void				showload(t_win **wn, int load);
-int					init(t_win **wn);
+int					init(t_win **wn, int argc, char **argv);
 void				initwn(t_win **wn);
 void				initsdl(t_win **wn);
-int					load_texture(char *path, t_win *wn, char *name);
+int					load_texture(t_win *wn, char *type, char *subtype, char *name);
+void				*load_intro(void *params);
 void				inittexture(t_win **wn);
 SDL_Texture			*initload2(t_win **wn, const char *path);
+void				showlinkedlist(t_win **wn, char *type, char *subtype);
 void				initload(t_win **wn);
-SDL_Texture			*findtexture(t_win *wn, const char *path);
+SDL_Texture			*findtexture(t_win *wn, char *type, char *subtype, char *name);
 
 void				option(t_win *wn);
 void				optioninput(t_win *wn);
 void				showoption(t_win *wn);
 
+char				*changename(char *name);
+void				showintro(t_win *wn);
 void				intro(t_win *wn);
 void				menu(t_win *wn);
 void				menuinput(t_win *wn);

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 13:45:38 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/31 21:38:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/05 11:24:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		showoption(t_win *wn)
 {
 	SDL_SetRenderDrawColor(wn->rend, 100, 0, 100, 0);
-	SDL_RenderCopy(wn->rend, findtexture(wn, "ajfbkn"), NULL, NULL);
+	SDL_RenderCopy(wn->rend, findtexture(wn, "invalide", "Nope", "Error"), NULL, NULL);
 	SDL_RenderClear(wn->rend);
 	SDL_RenderPresent(wn->rend);
 }

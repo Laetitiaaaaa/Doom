@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:02:47 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/16 19:07:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/05 12:48:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		parsearg(int argc, char **argv, t_win **wn)
 		ft_strcmp(argv[2], "HIGH") == 0 ? (*wn)->difficulty = 2 : 0;
 		ft_strcmp(argv[2], "HARDCORE") == 0 ? (*wn)->difficulty = 3 : 0;
 		ft_strcmp(argv[2], "DEATH") == 0 ? (*wn)->difficulty = 4 : 0;
+		ft_strcmp(argv[2], "LQ") == 0 ? (*wn)->quality = 1 : 0;
 	}
 	return (1);
 }

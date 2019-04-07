@@ -6,11 +6,22 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:15:15 by lomasse           #+#    #+#             */
-/*   Updated: 2019/03/29 13:18:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/05 13:25:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/doom.h"
+
+static void inittext(t_win **wn)
+{
+	((*wn)->texture = malloc(sizeof(t_text))) == NULL ? stop_exec("malloc failed\n", *wn): 0;
+	(*wn)->texture->type = ft_strdup("main");
+	(*wn)->texture->subtype = ft_strdup("intro");
+	(*wn)->texture->name = ft_strdup("none");
+	(*wn)->texture->next_type = NULL;
+	(*wn)->texture->next_subtype = NULL;
+	(*wn)->texture->next = NULL;
+}
 
 static void	initelem(t_win **wn)
 {
@@ -61,8 +72,10 @@ void	initwn(t_win **wn)
 	initmap(wn);
 	initelem(wn);
 	initmenu(wn);
+	inittext(wn);
 	(*wn)->state = NULL;
 	(*wn)->difficulty = 0;
+	(*wn)->quality = 0;
 	(*wn)->debug = 0;
 	(*wn)->window = NULL;
 	(*wn)->rend = NULL;
