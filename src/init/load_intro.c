@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 09:27:37 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/07 17:18:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/08 16:26:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,67 @@ static void		load_main(t_win **wn)
 	char	*name;
 	int		img;
 
-	name = ft_strdup("texture/intro/test0001.tga");
+	name = ft_strdup("texture/intro/menu/test0001.tga");
 	img = 1;
-	while (img <= 60)
+	while (img <= 59)
 	{
-		(*wn)->tmp = name;
+		(*wn)->tmp[0] = name;
 		load_texture(*wn, "main", "intro", ft_itoa(img));
-		name = changename(name);
+		name = changename(name, 23);
 		img++;
+		(*wn)->load += 1;
 	}
 }
 
 static void		load_option(t_win **wn)
 {
-	(void)wn;
+	char	*name;
+	int		img;
+
+	name = ft_strdup("texture/intro/option/test0121.tga");
+	img = 121;
+	while (img <= 179)
+	{
+		(*wn)->tmp[2] = name;
+		load_texture(*wn, "option", "intro", ft_itoa(img));
+		name = changename(name, 25);
+		img++;
+		(*wn)->load += 1;
+	}
 }
 
 static void		load_edit(t_win **wn)
 {
-	(void)wn;
+	char	*name;
+	int		img;
+
+	name = ft_strdup("texture/intro/edit/test0060.tga");
+	img = 60;
+	while (img <= 119)
+	{
+		(*wn)->tmp[1] = name;
+		load_texture(*wn, "editor", "intro", ft_itoa(img));
+		name = changename(name, 23);
+		img++;
+		(*wn)->load += 1;
+	}
 }
 
 static void		load_game(t_win **wn)
 {
-	(void)wn;
+	char	*name;
+	int		img;
+
+	name = ft_strdup("texture/intro/game/test0180.tga");
+	img = 180;
+	while (img <= 239)
+	{
+		(*wn)->tmp[3] = name;
+		load_texture(*wn, "game", "intro", ft_itoa(img));
+		name = changename(name, 23);
+		img++;
+		(*wn)->load += 1;
+	}
 }
 
 void			*load_intro(void	*params)

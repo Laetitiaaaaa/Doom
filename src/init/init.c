@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:00:01 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/07 17:23:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/08 16:19:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,65 @@
 
 static void		loadminimenu(t_win **wn)
 {
-	(*wn)->tmp = ft_strdup("./texture/intro/test0060.tga");
+	(*wn)->tmp[0] = ft_strdup("./texture/intro/menu/test0059.tga");
 	load_texture(*wn, "main", "intro", "60");
+}
+
+static void		*loadingthread(void *param)
+{
+	t_win 	**wn;
+	int		value;
+	int		i;
+
+	i = 0;
+	wn = &((t_thread *)param)->wn;
+	while (TRUE)
+	{
+/*		value = (*wn)->load * 70 / 240;
+		if (value > 0 && value < 100)
+			showload(wn, value + 30);
+		SDL_Delay(1000/60);
+		i++;
+*/		if ((*wn)->turn == 0)
+			break;
+	(void)value;
+	}
+	return (0);
 }
 
 static void		loadmenu(t_win **wn)
 {
-	t_thread	thread[4];
+	t_thread	thread[5];
 
 	int			i;
 	int			load;
 
 	i = 0;
 	load = 0;
-	while (i < 4)
+	(*wn)->turn = 4;
+	while (i < (int)(sizeof(char) << 2))
 	{
 		thread[i].wn = *wn;
 		thread[i].value = i;
 		pthread_create(&thread[i].thd, NULL, load_intro, (void *)&(thread[i]));
 		i++;
+		printf("Thread in creation\n");
 	}
-
-/*	load_intro(wn ,0);
-	showload(wn, 40);
-	load_intro(wn ,1);
-	showload(wn, 60);
-	load_intro(wn, 2);
-	showload(wn, 80);
-	load_intro(wn, 3);
-	showload(wn, 95);
-*/
+	thread[4].wn = *wn;
+	pthread_create(&thread[4].thd, NULL, loadingthread, (void *)&(thread[i]));
 	pthread_join((thread[0].thd), NULL);
+	(*wn)->turn = 3;
 	pthread_join((thread[1].thd), NULL);
+	(*wn)->turn = 2;
 	pthread_join((thread[2].thd), NULL);
-	
-	//	showlinkedlist(wn, "main", "intro");
+	(*wn)->turn = 1;
+	pthread_join((thread[3].thd), NULL);
+	(*wn)->turn = 0;
+	pthread_join(thread[4].thd, NULL);
+//	showlinkedlist(wn, "main", "intro");
+//	showlinkedlist(wn, "game", "intro");
+//	showlinkedlist(wn, "option", "intro");
+//	showlinkedlist(wn, "editor", "intro");
 }
 
 void			showload(t_win **wn, int load)
@@ -77,7 +101,7 @@ int				init(t_win **wn, int argc, char **argv)
 	showload(wn, 10);
 	(*wn)->txtnotload = initload2(wn, "./texture/failedload.tga");
 	showload(wn, 15);
-	(*wn)->tmp = ft_strdup("./texture/menu/cursor.tga");
+	(*wn)->tmp[0] = ft_strdup("./texture/menu/cursor.tga");
 	load_texture(*wn, "main", "intro", "cursor");
 	parsearg(argc, argv, wn) == 0 ? stop_exec("Parsing error\n", *wn) : 0;
 	showload(wn, 30);

@@ -6,7 +6,7 @@
 #    By: lomasse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 19:24:01 by lomasse           #+#    #+#              #
-#    Updated: 2019/04/07 16:41:11 by lomasse          ###   ########.fr        #
+#    Updated: 2019/04/08 14:12:37 by lomasse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,10 @@ TGA_SRC			= data.c										\
 				  rot.c											\
 				  tga_main.c
 
-CINE_SRC		= intro.c
+CINE_SRC		= intro.c										\
+				  introedit.c									\
+				  introedit2.c									\
+				  introgame.c									\
 
 BASE_PATH		= ./src/
 

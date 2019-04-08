@@ -6,11 +6,34 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:15:15 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/05 13:25:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/08 12:30:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/doom.h"
+
+static void	inittext2(t_win **wn, int parts, char *type, char *subtype)
+{
+	t_text	*text;
+	text = (*wn)->texture;
+	if (parts == 1)
+	{
+		while (text->next_type != NULL)
+			text = text->next_type;
+		text->next_type = malloc(sizeof(t_text));
+		text = text->next_type;
+		text->next_type = NULL;
+		text->next_subtype = NULL;
+		text->next = NULL;
+		text->before = NULL;
+		text->type = ft_strdup(type);
+		text->subtype = ft_strdup(subtype);
+		text->name = ft_strdup("none");
+	}
+	else
+		while (text->next_subtype != NULL)
+			text = text->next_subtype;
+}
 
 static void inittext(t_win **wn)
 {
@@ -21,6 +44,10 @@ static void inittext(t_win **wn)
 	(*wn)->texture->next_type = NULL;
 	(*wn)->texture->next_subtype = NULL;
 	(*wn)->texture->next = NULL;
+	(*wn)->texture->before = NULL;
+	inittext2(wn, 1, "editor", "intro");
+	inittext2(wn, 1, "game", "intro");
+	inittext2(wn, 1, "option", "intro");
 }
 
 static void	initelem(t_win **wn)
@@ -69,6 +96,7 @@ static void	initmenu(t_win **wn)
 void	initwn(t_win **wn)
 {
 	(*wn)->interface = MENU;
+	(*wn)->oldinterface = MENU;
 	initmap(wn);
 	initelem(wn);
 	initmenu(wn);
@@ -80,4 +108,5 @@ void	initwn(t_win **wn)
 	(*wn)->window = NULL;
 	(*wn)->rend = NULL;
 	(*wn)->txtnotload = NULL;
+	(*wn)->load = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:35:20 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/05 13:16:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/08 16:19:35 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,19 @@ t_text			*findpos(t_win *wn, char *type, char *subtype, char *name)
 	if (ft_strcmp(curr->type, type))
 	{
 		(curr->next_type = malloc(sizeof(t_text))) == NULL ? stop_exec("Malloc Failed\n", wn) : 0;
+		curr->next_type->before = curr;
 		curr =	curr->next_type;
 	}
 	else if (ft_strcmp(curr->subtype, subtype))
 	{
 		(curr->next_subtype = malloc(sizeof(t_text))) == NULL ? stop_exec("Malloc Failed\n", wn) : 0;
+		curr->next_subtype->before = curr;
 		curr =	curr->next_subtype;
 	}
 	else
 	{
 		(curr->next = malloc(sizeof(t_text))) == NULL ? stop_exec("Malloc Failed\n", wn) : 0;
+		curr->next->before = curr;
 		curr =	curr->next;
 	}
 	fillpos(curr, type, subtype, name);
@@ -70,7 +73,15 @@ t_text			*findpos(t_win *wn, char *type, char *subtype, char *name)
 static int		tga2sur(t_tga *tga, t_win *wn, t_text *place)
 {
 	tga->surface = SDL_CreateRGBSurfaceWithFormatFrom(tga->data, tga->w, tga->h, 32, 4 * (tga->w), SDL_PIXELFORMAT_ARGB32);
-	place->txt = SDL_CreateTextureFromSurface(wn->rend, tga->surface);
+	if (tga->surface != NULL)
+		place->txt = SDL_CreateTextureFromSurface(wn->rend, tga->surface);
+	else
+	{
+		free(place->name);
+		free(place->subtype);
+		free(place->type);
+		place = NULL;
+	}
 	SDL_FreeSurface(tga->surface);
 	return (0);
 }
@@ -79,12 +90,21 @@ int				load_texture(t_win *wn, char *type, char *subtype, char *name)
 {
 	t_tga		*tga;
 	t_text		*txt;
+	int			i;
 
+	if (ft_strcmp("main", type) == 0) 
+		i = 0;
+	else if (ft_strcmp("editor", type) == 0)
+		i = 1;
+	else if (ft_strcmp("option", type) == 0)
+		i = 2;
+	else
+		i = 3;
 	tga = NULL;
 	txt = NULL;
 	if (!(tga = (t_tga *)malloc(sizeof(t_tga))))
 		stop_exec("Cant malloc tga\n", wn);
-	if ((tga = load_tga(wn->tmp)) == NULL)
+	if ((tga = load_tga(wn->tmp[i])) == NULL)
 	{
 		free_tga(tga);
 		return (1);

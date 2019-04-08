@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/07 17:12:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/08 16:50:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_text
 	struct s_text	*next_type;
 	struct s_text	*next_subtype;
 	struct s_text	*next;
+	struct s_text	*before;
 }					t_text;
 
 typedef struct		s_thread
@@ -97,7 +98,9 @@ typedef struct		s_win
 	char			debug;
 	char			interface;
 	char			oldinterface;
-	char			*tmp;
+	char			*tmp[4];
+	int				load;
+	int				turn;
 	Uint8			*state;
 	Uint8			*old;
 	SDL_Event		ev;
@@ -135,8 +138,14 @@ void				option(t_win *wn);
 void				optioninput(t_win *wn);
 void				showoption(t_win *wn);
 
-char				*changename(char *name);
+char				*changename(char *name, int place);
 void				showintro(t_win *wn);
+void				showintroedit(t_win *wn);
+void				showintroedit2(t_win *wn);
+void				showintrogame(t_win *wn);
+void				showreverseintro(t_win *wn);
+void				showreverseintroedit2(t_win *wn);
+void				showreverseintrogame(t_win *wn);
 void				intro(t_win *wn);
 void				menu(t_win *wn);
 void				menuinput(t_win *wn);
@@ -144,6 +153,7 @@ void				showmenu(t_win *wn);
 
 void				turn(t_win *wn);
 void				game(t_win *wn);
+void				gameinput(t_win *wn);
 void				setkeyboard(Uint8 *new, Uint8 *current);
 
 void				stop_exec(char *msg, t_win *wn);
