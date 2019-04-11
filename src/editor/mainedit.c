@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:20:52 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/08 16:44:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/09 17:51:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		edit(t_win *wn)
 {
 	if (wn->oldinterface != wn->interface)
 	{
-		showintroedit(wn);
+		mainintro(wn, "editor", "intro", 60);
 		wn->oldinterface = wn->interface;
 	}
 	inputeditor(wn);

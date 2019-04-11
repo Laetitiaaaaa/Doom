@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mainmenu.c                                         :+:      :+:    :+:   */
+/*   mainintro.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/08 21:02:03 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/11 13:38:21 by lomasse          ###   ########.fr       */
+/*   Created: 2019/04/09 17:05:46 by lomasse           #+#    #+#             */
+/*   Updated: 2019/04/11 10:33:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/doom.h"
 
-void	menu(t_win *wn)
+void		mainintro(t_win *wn, char *type, char *subtype, int	pos)
 {
-	if (wn->oldinterface != wn->interface)
-	{
-		if (wn->oldinterface == EDITEUR)
-			mainintro(wn, "editor", "intro", -60);
-		else if (wn->oldinterface == OPTION)
-			mainintro(wn, "option", "intro", -120);
-		else if (wn->oldinterface == GAME)
-			mainintro(wn, "game", "intro", -180);
-		wn->oldinterface = wn->interface;
-	}
-	menuinput(wn);
-	showmenu(wn);
+	t_text	*img;
+	int		place;
+
+	place = (pos & 0x7FFFFFFF);
+	img = findpostxt(wn, type, subtype, ft_itoa(place));
+	if ((pos & 0x80000000) == 0)
+		showintro(wn, img);
+	else
+		showreverseintro(wn, img);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:00:01 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/08 16:19:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/11 13:39:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,15 @@ static void		*loadingthread(void *param)
 
 	i = 0;
 	wn = &((t_thread *)param)->wn;
+	value = 30;
 	while (TRUE)
 	{
-/*		value = (*wn)->load * 70 / 240;
-		if (value > 0 && value < 100)
-			showload(wn, value + 30);
-		SDL_Delay(1000/60);
-		i++;
-*/		if ((*wn)->turn == 0)
+//		showload(wn, value);
+//		value += 1;
+//		SDL_Delay(1000/100);
+//		i++;
+		if ((*wn)->turn == 0)
 			break;
-	(void)value;
 	}
 	return (0);
 }
@@ -56,7 +55,6 @@ static void		loadmenu(t_win **wn)
 		thread[i].value = i;
 		pthread_create(&thread[i].thd, NULL, load_intro, (void *)&(thread[i]));
 		i++;
-		printf("Thread in creation\n");
 	}
 	thread[4].wn = *wn;
 	pthread_create(&thread[4].thd, NULL, loadingthread, (void *)&(thread[i]));
@@ -69,10 +67,6 @@ static void		loadmenu(t_win **wn)
 	pthread_join((thread[3].thd), NULL);
 	(*wn)->turn = 0;
 	pthread_join(thread[4].thd, NULL);
-//	showlinkedlist(wn, "main", "intro");
-//	showlinkedlist(wn, "game", "intro");
-//	showlinkedlist(wn, "option", "intro");
-//	showlinkedlist(wn, "editor", "intro");
 }
 
 void			showload(t_win **wn, int load)

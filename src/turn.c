@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:12:44 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/07 15:40:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/11 13:39:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void	turn(t_win *wn)
 	Uint8	difftime;
 	Uint8	time;
 
-	wn->quality == 0 ? showintro(wn) : 0;
+	wn->quality == 0 ? mainintro(wn, "main", "intro", 0) : 0;
 	wn->old = malloc(sizeof(Uint8*) * 284);
 	wn->state = (Uint8*)SDL_GetKeyboardState(NULL);
+	mainintro(wn, "main", "intro", 1);
 	while (TRUE)
 	{
 		time = SDL_GetTicks();

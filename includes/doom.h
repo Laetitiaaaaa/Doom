@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:14:06 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/08 16:50:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/09 17:30:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,13 +139,9 @@ void				optioninput(t_win *wn);
 void				showoption(t_win *wn);
 
 char				*changename(char *name, int place);
-void				showintro(t_win *wn);
-void				showintroedit(t_win *wn);
-void				showintroedit2(t_win *wn);
-void				showintrogame(t_win *wn);
-void				showreverseintro(t_win *wn);
-void				showreverseintroedit2(t_win *wn);
-void				showreverseintrogame(t_win *wn);
+void				showintro(t_win *wn, t_text *img);
+void				showreverseintro(t_win *wn, t_text *img);
+void				mainintro(t_win *wn, char *type, char *subtype, int pose);
 void				intro(t_win *wn);
 void				menu(t_win *wn);
 void				menuinput(t_win *wn);

@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 20:46:22 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/08 12:16:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/11 10:33:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,26 @@ void	intro(t_win *wn)
 	}
 }
 
-void	showintro(t_win *wn)
+void	showreverseintro(t_win *wn, t_text *img)
 {
-	t_text	*img;
+	if (img != NULL)
+	{
+		while (img->before != NULL)
+		{
+			SDL_RenderCopy(wn->rend, img->txt, NULL, NULL);
+			SDL_RenderPresent(wn->rend);
+			img = img->before;
+			SDL_Delay(30);
+		}
+	}
+}
 
-	img = findpostxt(wn, "main", "intro", "1");
+void	showintro(t_win *wn, t_text *img)
+{
 	if (img != NULL)
 	{
 		while (img->next != NULL)
 		{
-			printf("%s\n", img->name);
 			SDL_RenderCopy(wn->rend, img->txt, NULL, NULL);
 			SDL_RenderPresent(wn->rend);
 			img = img->next;

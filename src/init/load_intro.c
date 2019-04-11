@@ -6,7 +6,7 @@
 /*   By: lomasse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 09:27:37 by lomasse           #+#    #+#             */
-/*   Updated: 2019/04/08 16:26:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2019/04/11 13:46:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void		load_option(t_win **wn)
 	char	*name;
 	int		img;
 
-	name = ft_strdup("texture/intro/option/test0121.tga");
-	img = 121;
+	name = ft_strdup("texture/intro/option/test0120.tga");
+	img = 120;
 	while (img <= 179)
 	{
 		(*wn)->tmp[2] = name;
