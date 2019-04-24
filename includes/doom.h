@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <math.h>
 # include <pthread.h>
-# include "../libft/libft.h"
-# include "../SDL2-2.0.9/include/SDL.h"
+# include "libft.h"
+# include "SDL.h"
 
 # define	XSCREEN 1500
 # define	YSCREEN 1200
